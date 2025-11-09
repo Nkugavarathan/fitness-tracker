@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 import api from "../api/axios"
 import { useNavigate } from "react-router-dom"
-
+import { Link } from "react-router-dom"
 export default function Login() {
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -41,6 +41,12 @@ export default function Login() {
         <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors">
           Login
         </button>
+        <p className="text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   )
