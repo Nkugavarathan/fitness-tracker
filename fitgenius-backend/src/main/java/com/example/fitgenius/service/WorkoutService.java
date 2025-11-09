@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class WorkoutService {
 public Workout addWorkout(String email,Workout workout){
     User user=userRepository.findByEmail(email).orElseThrow();
     workout.setUser(user);
+    workout.setDate(LocalDate.now());
     return workoutRepository.save(workout);
 }
     //get user workouts

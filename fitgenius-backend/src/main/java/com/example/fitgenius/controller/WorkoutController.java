@@ -20,7 +20,13 @@ public class WorkoutController {
     //add workout
     @PostMapping
 public Workout addWorkout(@RequestBody Workout workout,HttpServletRequest request){
+        //Extract token only (remove "Bearer ")
         String token=request.getHeader("Authorization").substring(7);
+
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("Missing or invalid Authorization header");
+        }
         String email=jwtUtil.extractEmail(token);
         return workoutService.addWorkout(email,workout);
 

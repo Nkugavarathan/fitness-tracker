@@ -15,8 +15,8 @@ export default function Register() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-blue-50">
       <form
-        className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg w-80"
         onSubmit={handleSubmit}
+        className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg w-80"
       >
         <h2 className="text-2xl font-bold text-blue-600 mb-6">
           Create Account
@@ -24,6 +24,7 @@ export default function Register() {
 
         <input
           type="text"
+          required
           placeholder="Full Name"
           className="border border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-200 p-2 mb-4 w-full rounded"
           onChange={(e) => setData({ ...data, fullName: e.target.value })}
@@ -38,6 +39,7 @@ export default function Register() {
 
         <input
           type="password"
+          required
           placeholder="Password"
           className="border border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-200 p-2 mb-6 w-full rounded"
           onChange={(e) => setData({ ...data, password: e.target.value })}
