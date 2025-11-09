@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/me")
+    @GetMapping("/api/user/me")
     public User getLoggedUser(Authentication authentication) {
         return userRepository.findByEmail(authentication.getName()).orElseThrow();
     }
