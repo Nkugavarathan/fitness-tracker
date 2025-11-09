@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import api from "../api/axiosInstance"
+import api from "../api/axiosInstane.js"
 
 const WorkoutTable = () => {
   const [workouts, setWorkouts] = useState([])

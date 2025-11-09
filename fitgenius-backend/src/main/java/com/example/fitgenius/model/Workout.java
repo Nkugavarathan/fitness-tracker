@@ -1,5 +1,6 @@
 package com.example.fitgenius.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 
 @Table(name="workout")
 @Entity
@@ -26,6 +28,7 @@ private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"password"})
     private User user;
 
 }

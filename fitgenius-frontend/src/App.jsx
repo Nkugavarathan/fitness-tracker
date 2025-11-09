@@ -6,6 +6,8 @@ import PrivateRoute from "./components/PrivateRoute"
 import Navbar from "./components/Navbar"
 
 import Home from "./pages/Home"
+import WorkoutTable from "./pages/WorkoutTable"
+import About from "./pages/About"
 
 export default function App() {
   return (
@@ -16,7 +18,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/workouts" element={<WorkoutTable />} />
-
+        <Route path="/about" element={<About />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route
           path="/dashboard"

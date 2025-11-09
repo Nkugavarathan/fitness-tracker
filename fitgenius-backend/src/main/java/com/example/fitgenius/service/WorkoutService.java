@@ -22,6 +22,8 @@ public Workout addWorkout(String email,Workout workout){
     User user=userRepository.findByEmail(email).orElseThrow();
     workout.setUser(user);
     workout.setDate(LocalDate.now());
+    System.out.println("Received workout: " + workout.getExerciseName());
+    System.out.println("For user: " + email);
     return workoutRepository.save(workout);
 }
     //get user workouts

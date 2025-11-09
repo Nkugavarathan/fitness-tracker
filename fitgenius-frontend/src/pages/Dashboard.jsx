@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
-import api from "../api/axios"
+import api from "../api/axios.js"
 
 export default function Dashboard() {
   const { token } = useContext(AuthContext)
+  console.log("token ", token)
   const [workouts, setWorkouts] = useState([])
   const [form, setForm] = useState({ exerciseName: "", sets: "", reps: "" })
 
@@ -13,13 +14,16 @@ export default function Dashboard() {
     })
     setWorkouts(res.data)
   }
-
   const addWorkout = async (e) => {
     e.preventDefault()
-    await api.post("/workouts", form, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    getWorkouts()
+    try {
+      await api.post("/workouts", form, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      getWorkouts()
+    } catch (err) {
+      console.error("Error adding workout:", err.response?.data || err.message)
+    }
   }
 
   useEffect(() => {
@@ -42,12 +46,12 @@ export default function Dashboard() {
         <input
           placeholder="Sets"
           className="border border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-200 p-2 mb-4 rounded"
-          onChange={(e) => setForm({ ...form, sets: e.target.value })}
+          onChange={(e) => setForm({ ...form, sets: Number(e.target.value) })}
         />
         <input
           placeholder="Reps"
           className="border border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-200 p-2 mb-6 rounded"
-          onChange={(e) => setForm({ ...form, reps: e.target.value })}
+          onChange={(e) => setForm({ ...form, reps: Number(e.target.value) })}
         />
         <button className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors">
           Add
